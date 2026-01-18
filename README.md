@@ -1,182 +1,251 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentalize Fácil | Resumos Jurídicos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --azul-claro: #72CDEE; /* Cor da sua logo */
-            --azul-escuro: #003366; /* Cor de autoridade/botões */
-            --branco: #ffffff;
-            --fundo-suave: #f0f7fa;
-            --texto: #2c3e50;
+            --primary-blue: #72CDEE; /* Azul da Marca */
+            --dark-blue: #0A4275;    /* Azul Profissional */
+            --bg-light: #E3F2FD;     /* Fundo suave (Premium) */
+            --white: #ffffff;
+            --text-main: #1A202C;
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.06);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        body { background-color: var(--fundo-suave); color: var(--texto); scroll-behavior: smooth; }
+        body { 
+            background-color: var(--bg-light); 
+            color: var(--text-main); 
+            padding-bottom: 50px;
+        }
 
-        /* HEADER ESTRATÉGICO */
+        /* HEADER ESTILO PÍLULA COM ÍCONE SVG */
+        .header-wrapper {
+            padding: 30px 5% 10px;
+            display: flex;
+            justify-content: center;
+        }
+
         header {
-            position: fixed; top: 0; width: 100%;
-            background: var(--branco);
-            padding: 10px 5%;
-            display: flex; align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            z-index: 1000;
-        }
-        .header-content { display: flex; align-items: center; gap: 15px; max-width: 1200px; margin: 0 auto; width: 100%; }
-        header img { height: 50px; width: 50px; border-radius: 50%; }
-        header h1 { font-size: 1.1rem; color: var(--azul-escuro); text-transform: uppercase; letter-spacing: 1px; }
-
-        main { padding: 100px 5% 40px; max-width: 1200px; margin: 0 auto; }
-
-        .semestre-secao { margin-bottom: 50px; }
-        .titulo-secao { 
-            font-size: 1.8rem; margin-bottom: 25px; 
-            color: var(--azul-escuro); border-left: 6px solid var(--azul-claro);
-            padding-left: 15px;
+            background: var(--white);
+            padding: 12px 30px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: var(--shadow-soft);
+            max-width: 700px;
+            width: 100%;
         }
 
-        /* GRID RESPONSIVO (MOBILE-FIRST) */
-        .grid-cards {
+        /* Ícone de Cérebro/Lâmpada em SVG para substituir a logo física */
+        .logo-icon {
+            background: var(--primary-blue);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        header h1 { font-size: 1.2rem; font-weight: 800; color: var(--dark-blue); letter-spacing: -0.5px; }
+
+        /* SEÇÕES */
+        main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        .section-header {
+            margin: 40px 0 20px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* GRID DE CARDS SOFT UI */
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
 
-        /* CARD DE ALTA CONVERSÃO */
         .card {
-            background: var(--branco);
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
+            background: var(--white);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.7);
+            display: flex;
+            flex-direction: column;
         }
-        .card:hover { transform: translateY(-5px); }
 
-        .card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--azul-escuro); height: 3.5rem; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 35px 70px rgba(0, 0, 0, 0.08); }
 
-        /* SELETOR DIGITAL / IMPRESSO */
-        .seletor { margin-bottom: 20px; }
-        .radio-group { display: flex; gap: 10px; margin-top: 10px; }
-        .radio-label {
-            flex: 1; text-align: center; padding: 10px;
-            border: 2px solid #edf2f7; border-radius: 10px;
-            cursor: pointer; font-size: 0.9rem; font-weight: 600;
+        .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark-blue); margin-bottom: 20px; min-height: 50px; line-height: 1.4; }
+
+        /* SELETOR PREMIUM */
+        .selector {
+            display: flex;
+            background: #F7FAFC;
+            padding: 5px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .selector label {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 11px;
             transition: 0.2s;
         }
-        input[type="radio"] { display: none; }
-        input[type="radio"]:checked + .radio-label {
-            border-color: var(--azul-claro); background: #eefbff; color: var(--azul-escuro);
+
+        .selector input { display: none; }
+        .selector input:checked + label {
+            background: var(--white);
+            color: var(--dark-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
-        .preco { font-size: 1.8rem; font-weight: 700; color: #27ae60; margin-bottom: 5px; }
-        .pix-tag { font-size: 0.75rem; color: #7f8c8d; margin-bottom: 15px; display: block; }
+        /* PREÇO E CTA */
+        .price-container { margin-bottom: 20px; }
+        .price { font-size: 1.8rem; font-weight: 800; color: var(--dark-blue); }
+        .pix-tag { font-size: 0.7rem; color: #718096; font-weight: 700; margin-top: 4px; display: block; text-transform: uppercase; }
 
-        /* CTA AZUL ESCURO */
-        .btn-comprar {
-            background: var(--azul-escuro);
-            color: var(--branco);
-            text-decoration: none; text-align: center;
-            padding: 15px; border-radius: 12px;
-            font-weight: 700; text-transform: uppercase;
-            transition: 0.3s; cursor: pointer; border: none;
+        .btn-buy {
+            background: var(--dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 18px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
-        .btn-comprar:hover { background: var(--azul-claro); color: var(--azul-escuro); transform: scale(1.02); }
 
-        /* ESTILO EM PRODUÇÃO */
-        .card-producao { opacity: 0.6; background: #fafafa; border: 1px dashed #cbd5e0; position: relative; }
-        .tag-breve { 
-            position: absolute; top: 15px; right: 15px; 
-            background: #cbd5e0; padding: 4px 10px; border-radius: 20px; 
-            font-size: 0.7rem; font-weight: 700; 
+        .btn-buy:hover { background: var(--primary-blue); transform: scale(1.02); }
+
+        /* ESTILO EM BREVE */
+        .card.soon {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            opacity: 0.7;
         }
-        .msg-aguarde { font-style: italic; color: #718096; margin-top: 20px; text-align: center; font-weight: 600; }
 
+        .badge {
+            background: var(--primary-blue);
+            color: var(--white);
+            font-size: 0.6rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 800;
+            align-self: flex-start;
+            margin-bottom: 15px;
+        }
+
+        /* RESPONSIVIDADE */
         @media (max-width: 600px) {
-            .grid-cards { grid-template-columns: 1fr; }
-            header h1 { font-size: 0.9rem; }
+            header { padding: 10px 20px; }
+            header h1 { font-size: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <img src="logo.png" alt="Logo Mentalize Fácil">
-        <h1>Mentalize Fácil</h1>
-    </div>
-</header>
+<div class="header-wrapper">
+    <header>
+        <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 20a2.5 2.5 0 0 1 5 0"/><path d="M12 15V3"/><path d="M8 11a4 4 0 0 1 8 0"/></svg>
+        </div>
+        <h1>Mentalize Fácil - Resumos</h1>
+    </header>
+</div>
 
 <main>
-    <section class="semestre-secao">
-        <h2 class="titulo-secao">1º Semestre</h2>
-        <div class="grid-cards" id="grid-1"></div>
-    </section>
+    <div class="section-header">1º Semestre</div>
+    <div class="card-grid" id="s1"></div>
 
-    <section class="semestre-secao">
-        <h2 class="titulo-secao">2º Semestre</h2>
-        <div class="grid-cards" id="grid-2"></div>
-    </section>
+    <div class="section-header">2º Semestre</div>
+    <div class="card-grid" id="s2"></div>
 
-    <section class="semestre-secao">
-        <h2 class="titulo-secao">3º Semestre (Em Produção)</h2>
-        <div class="grid-cards" id="grid-3"></div>
-    </section>
+    <div class="section-header">3º Semestre (Em Produção)</div>
+    <div class="card-grid" id="s3"></div>
 </main>
 
 <script>
-    const whatsappLink = "https://wa.me/5569992168120";
+    const wa = "https://wa.me/5569992168120";
 
-    const s1 = ["Ciência Política e Teoria Geral do Estado", "Criminologia", "História do Direito", "Psicologia Jurídica e Relações Interpessoais", "Teoria Geral do Direito"];
-    const s2 = ["Direito Civil - Parte Geral", "Direito Constitucional (Teoria da Constituição e Direitos Fundamentais)", "Direito Criminal - Penal 1"];
-    const s3 = ["Direito Civil - Obrigações e Responsabilidade Civil", "Direito Constitucional - Organização do Estado e seus Poderes", "Direito Criminal - Penal 2", "Direito Processual Civil - Parte Geral e Tutela", "Direitos Humanos, Diversidade e Inclusão"];
+    const data = {
+        s1: ["Ciência Política e Teoria Geral do Estado", "Criminologia", "História do Direito", "Psicologia Jurídica e Relações Interpessoais", "Teoria Geral do Direito"],
+        s2: ["Direito Civil - Parte Geral", "Direito Constitucional", "Direito Criminal - Penal 1"],
+        s3: ["Direito Civil - Obrigações", "Direito Constitucional - Poderes", "Direito Criminal - Penal 2", "Direito Processual Civil", "Direitos Humanos"]
+    };
 
-    function createCard(materia, gridId, isProduction = false) {
-        const grid = document.getElementById(gridId);
-        const id = materia.replace(/\s+/g, '-').toLowerCase();
-        const card = document.createElement('div');
-        card.className = isProduction ? 'card card-producao' : 'card';
-
-        if(isProduction) {
-            card.innerHTML = `<span class="tag-breve">EM BREVE</span><h3>${materia}</h3><p class="msg-aguarde">Material em Produção - Aguarde</p>`;
-        } else {
-            card.innerHTML = `
-                <h3>${materia}</h3>
-                <div class="seletor">
-                    <div class="radio-group">
-                        <input type="radio" name="fmt-${id}" id="dig-${id}" value="55" checked onchange="updatePrice('${id}', 55)">
-                        <label class="radio-label" for="dig-${id}">Digital (PDF)</label>
-                        <input type="radio" name="fmt-${id}" id="imp-${id}" value="65" onchange="updatePrice('${id}', 65)">
-                        <label class="radio-label" for="imp-${id}">Impresso</label>
+    function render() {
+        // Semestres ativos
+        ['s1', 's2'].forEach(sem => {
+            const container = document.getElementById(sem);
+            data[sem].forEach((mat, i) => {
+                const id = `${sem}-${i}`;
+                container.innerHTML += `
+                    <div class="card">
+                        <h3>${mat}</h3>
+                        <div class="selector">
+                            <input type="radio" name="f-${id}" id="d-${id}" checked onchange="up('${id}', 55)">
+                            <label for="d-${id}">Digital (PDF)</label>
+                            <input type="radio" name="f-${id}" id="i-${id}" onchange="up('${id}', 65)">
+                            <label for="i-${id}">Impresso</label>
+                        </div>
+                        <div class="price-container">
+                            <span class="price" id="p-${id}">R$ 55,00</span>
+                            <span class="pix-tag">✓ Pagamento via PIX</span>
+                        </div>
+                        <button class="btn-buy" onclick="buy('${mat}', '${id}')">COMPRAR AGORA</button>
                     </div>
+                `;
+            });
+        });
+
+        // Semestre em produção
+        const s3 = document.getElementById('s3');
+        data.s3.forEach(mat => {
+            s3.innerHTML += `
+                <div class="card soon">
+                    <span class="badge">BREVE</span>
+                    <h3>${mat}</h3>
+                    <p style="color: #718096; font-weight: 700; font-size: 0.85rem;">Em fase de finalização...</p>
                 </div>
-                <div class="preco" id="price-${id}">R$ 55,00</div>
-                <span class="pix-info">Pagamento via PIX</span>
-                <button onclick="comprar('${materia}', '${id}')" class="btn-comprar">Comprar Agora</button>
             `;
-        }
-        grid.appendChild(card);
+        });
     }
 
-    function updatePrice(id, valor) {
-        document.getElementById(`price-${id}`).innerText = `R$ ${valor},00`;
+    function up(id, v) { document.getElementById(`p-${id}`).innerText = `R$ ${v},00`; }
+
+    function buy(m, id) {
+        const p = document.getElementById(`p-${id}`).innerText;
+        const f = document.querySelector(`input[name="f-${id}"]:checked`).nextElementSibling.innerText;
+        const txt = encodeURIComponent(`Olá! Quero o resumo de:\n📚 *${m}*\n📄 Formato: ${f}\n💰 Valor: ${p}\n\nFavor enviar a chave PIX.`);
+        window.location.href = `${wa}?text=${txt}`;
     }
 
-    function comprar(materia, id) {
-        const preco = document.getElementById(`price-${id}`).innerText;
-        const formato = document.querySelector(`input[name="fmt-${id}"]:checked`).nextElementSibling.innerText;
-        const msg = encodeURIComponent(`Olá! Quero adquirir o resumo:\n📚 Matéria: ${materia}\n📄 Formato: ${formato}\n💰 Valor: ${preco}\n✅ Pagamento via PIX.`);
-        window.location.href = `${whatsappLink}?text=${msg}`;
-    }
-
-    // Gerar Matérias
-    s1.forEach(m => createCard(m, 'grid-1'));
-    s2.forEach(m => createCard(m, 'grid-2'));
-    s3.forEach(m => createCard(m, 'grid-3', true));
+    render();
 </script>
 
 </body>
