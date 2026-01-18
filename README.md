@@ -1,410 +1,222 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentalize Fácil | Resumos Jurídicos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Mentalize Fácil - Resumos Jurídicos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIÁVEIS & RESET (Identidade Visual) --- */
         :root {
-            --cor-primaria: #4FC3F7; /* Azul Claro - Marca */
-            --cor-cta: #01579B;       /* Azul Escuro - Botões */
-            --cor-cta-hover: #0277BD; /* Hover Vibrante */
-            --cor-fundo: #F4F6F8;     /* Branco/Cinza limpo */
-            --cor-texto: #333333;
-            --cor-borda: #E0E0E0;
-            --sombra-suave: 0 4px 6px -1px rgba(0,0,0,0.1);
-            --sombra-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --azul-marca: #72CDEE; /* Azul claro do círculo da logo */
+            --azul-fundo: #D9EEFB; /* Fundo suave da imagem do site */
+            --azul-escuro: #0D47A1; /* Botões de conversão */
+            --branco: #FFFFFF;
+            --texto: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
-            line-height: 1.6;
-            padding-top: 80px; /* Espaço para o header fixo */
-        }
+        body { background-color: var(--azul-fundo); color: var(--texto); line-height: 1.6; }
 
-        /* --- HEADER --- */
+        /* 1. Identidade Visual & UI: Header Fixo */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #FFFFFF;
-            height: 70px;
+            top: 0; width: 100%;
+            background: var(--branco);
+            padding: 10px 5%;
             display: flex;
             align-items: center;
-            padding: 0 5%;
-            box-shadow: var(--sombra-suave);
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             z-index: 1000;
         }
 
-        header img {
-            max-height: 40px;
-            width: auto;
+        header .header-container {
+            width: 100%; max-width: 1100px;
+            display: flex; align-items: center; gap: 15px;
         }
 
-        /* --- LAYOUT GERAL --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        header img { height: 45px; border-radius: 50%; }
+        header h1 { font-size: 1.2rem; color: var(--azul-escuro); font-weight: 700; }
+
+        /* Estrutura de Catálogo */
+        main { padding: 100px 5% 50px; max-width: 1100px; margin: 0 auto; }
+
+        .section-title { 
+            font-size: 1.8rem; margin: 40px 0 20px; 
+            color: var(--texto); font-weight: 700; 
         }
 
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--cor-cta);
-            border-bottom: 2px solid var(--cor-primaria);
-            display: inline-block;
-            margin: 40px 0 20px 0;
-            padding-bottom: 5px;
+        /* 5. Responsividade: Grid Mobile-first */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Funcionalidade dos Cards */
+        .card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card h3 { font-size: 1.1rem; margin-bottom: 15px; min-height: 50px; color: var(--azul-escuro); }
+
+        /* Seletor de Formato */
+        .format-selector {
+            display: flex; gap: 10px; margin-bottom: 20px;
+        }
+
+        .format-selector label {
+            flex: 1; text-align: center;
+            padding: 8px; border: 2px solid #f0f0f0;
+            border-radius: 10px; cursor: pointer;
+            font-size: 0.85rem; font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .format-selector input { display: none; }
+
+        .format-selector input:checked + label {
+            border-color: var(--azul-marca);
+            background: #f0faff;
+            color: var(--azul-escuro);
+        }
+
+        /* Preço e Pagamento */
+        .price-tag { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
+        .pix-info { font-size: 0.8rem; color: #666; margin-bottom: 15px; display: block; }
+
+        /* Ação do Botão CTA */
+        .btn-buy {
+            background: var(--azul-escuro);
+            color: var(--branco);
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 700;
+            transition: 0.3s;
         }
 
-        /* --- GRID DE CARDS --- */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile First: 1 coluna */
-            gap: 20px;
-        }
+        .btn-buy:hover { background: #012d6a; box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3); }
 
-        /* Tablet e Desktop */
-        @media (min-width: 768px) {
-            .grid-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* 4. Seção em Produção */
+        .card.in-production { opacity: 0.6; pointer-events: none; }
+        .badge-soon {
+            position: absolute; top: 15px; right: 15px;
+            background: #eee; font-size: 0.7rem;
+            padding: 4px 10px; border-radius: 20px; font-weight: 700;
         }
+        .msg-production { color: #888; font-style: italic; font-size: 0.9rem; margin-top: 10px; }
 
-        @media (min-width: 1024px) {
-            .grid-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        @media (max-width: 600px) {
+            .section-title { font-size: 1.4rem; text-align: center; }
+            header h1 { font-size: 1rem; }
         }
-
-        /* --- ESTILO DO CARD --- */
-        .card {
-            background: #FFFFFF;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: var(--sombra-suave);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border: 1px solid transparent;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra-hover);
-            border-color: var(--cor-primaria);
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 15px;
-            color: var(--cor-cta);
-            min-height: 3.5rem; /* Alinha alturas dos títulos */
-        }
-
-        /* --- SELETOR DE FORMATO (Radio Buttons) --- */
-        .format-selector {
-            margin-bottom: 20px;
-            background: #F0F4F8;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .radio-option:last-child {
-            margin-bottom: 0;
-        }
-
-        .radio-option input {
-            margin-right: 10px;
-            accent-color: var(--cor-cta); /* Cor do check nativo moderno */
-            width: 18px;
-            height: 18px;
-        }
-
-        /* --- PREÇO E CTA --- */
-        .price-display {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--cor-texto);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .btn-buy {
-            background-color: var(--cor-cta);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s;
-            text-transform: uppercase;
-        }
-
-        .btn-buy:hover {
-            background-color: var(--cor-cta-hover);
-        }
-
-        /* --- ESTILO "EM PRODUÇÃO" (3º Semestre) --- */
-        .production-card {
-            opacity: 0.8;
-            background-color: #FAFAFA;
-            border: 1px dashed #CCC;
-        }
-
-        .production-card h3 {
-            color: #777;
-        }
-
-        .status-badge {
-            display: block;
-            background-color: #EEE;
-            color: #666;
-            text-align: center;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 500;
-            margin-top: auto; /* Empurra para o fundo do card */
-            font-size: 0.9rem;
-        }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-area">
-            <img src="logo.png" alt="Mentalize Fácil">
-        </div>
-    </header>
+<header>
+    <div class="header-container">
+        <img src="logo.png" alt="Mentalize Fácil"> <h1>Mentalize Fácil - Resumos Jurídicos</h1>
+    </div>
+</header>
 
-    <main class="container">
+<main>
+    <h2 class="section-title">1º Semestre</h2>
+    <div class="card-grid" id="semestre1"></div>
 
-        <h2 class="section-title">1º Semestre</h2>
-        <div class="grid-cards" id="semestre-1">
-            <div class="card product-card" data-id="cp-tge">
-                <h3>Ciência Política e Teoria Geral do Estado</h3>
+    <h2 class="section-title">2º Semestre</h2>
+    <div class="card-grid" id="semestre2"></div>
+
+    <h2 class="section-title">3º Semestre (A caminho)</h2>
+    <div class="card-grid" id="semestre3"></div>
+</main>
+
+<script>
+    const whatsappBase = "https://wa.me/5569992168120";
+
+    const materiasS1 = [
+        "Ciência Política e Teoria Geral do Estado", "Criminologia", 
+        "História do Direito", "Psychologia Jurídica e Relações Interpessoais", "Teoria Geral do Direito"
+    ];
+
+    const materiasS2 = [
+        "Direito Civil - Parte Geral", 
+        "Direito Constitucional (Teoria da Constituição e Direitos Fundamentais)", 
+        "Direito Criminal - Penal 1"
+    ];
+
+    const materiasS3 = [
+        "Direito Civil - Obrigações e Responsabilidade Civil",
+        "Direito Constitucional - Organização do Estado e seus Poderes",
+        "Direito Criminal - Penal 2",
+        "Direito Processual Civil - Parte Geral e Tutela",
+        "Direitos Humanos, Diversidade e Inclusão"
+    ];
+
+    function createCard(nome, containerId, isProduction = false) {
+        const container = document.getElementById(containerId);
+        const cardId = nome.replace(/\s+/g, '-').toLowerCase();
+
+        const card = document.createElement('div');
+        card.className = `card ${isProduction ? 'in-production' : ''}`;
+        
+        if (isProduction) {
+            card.innerHTML = `
+                <span class="badge-soon">EM BREVE</span>
+                <h3>${nome}</h3>
+                <p class="msg-production">Material em Produção - Aguarde</p>
+            `;
+        } else {
+            card.innerHTML = `
+                <h3>${nome}</h3>
                 <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-cp-tge" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-cp-tge" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
+                    <input type="radio" name="fmt-${cardId}" id="dig-${cardId}" value="Digital" checked onchange="updatePrice('${cardId}', 55)">
+                    <label for="dig-${cardId}">Digital (PDF)</label>
+                    <input type="radio" name="fmt-${cardId}" id="imp-${cardId}" value="Impresso" onchange="updatePrice('${cardId}', 65)">
+                    <label for="imp-${cardId}">Impresso</label>
                 </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card product-card" data-id="criminologia">
-                <h3>Criminologia</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-crim" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-crim" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card product-card" data-id="hist-direito">
-                <h3>História do Direito</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-hist" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-hist" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card product-card" data-id="psico-jur">
-                <h3>Psicologia Jurídica e Relações Interpessoais</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-psico" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-psico" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card product-card" data-id="tgd">
-                <h3>Teoria Geral do Direito</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-tgd" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-tgd" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-        </div>
-
-        <h2 class="section-title">2º Semestre</h2>
-        <div class="grid-cards" id="semestre-2">
-            
-            <div class="card product-card" data-id="civ-geral">
-                <h3>Direito Civil - Parte Geral</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-civg" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-civg" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card product-card" data-id="const-teoria">
-                <h3>Direito Constitucional (Teoria e Fundamentais)</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-const" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-const" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card product-card" data-id="penal-1">
-                <h3>Direito Criminal - Penal 1</h3>
-                <div class="format-selector">
-                    <label class="radio-option">
-                        <input type="radio" name="format-penal1" value="digital" checked onchange="updatePrice(this)">
-                        Digital (PDF)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="format-penal1" value="impresso" onchange="updatePrice(this)">
-                        Impresso
-                    </label>
-                </div>
-                <div class="price-display">R$ 55,00</div>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-        </div>
-
-        <h2 class="section-title">3º Semestre <span style="font-size: 0.8rem; color: #777; font-weight: 400; margin-left: 10px;">(Em Breve)</span></h2>
-        <div class="grid-cards" id="semestre-3">
-            
-            <div class="card production-card">
-                <h3>Direito Civil - Obrigações e Resp. Civil</h3>
-                <div class="status-badge">Material em Produção - Aguarde</div>
-            </div>
-
-            <div class="card production-card">
-                <h3>Direito Constitucional - Org. do Estado e Poderes</h3>
-                <div class="status-badge">Material em Produção - Aguarde</div>
-            </div>
-
-            <div class="card production-card">
-                <h3>Direito Criminal - Penal 2</h3>
-                <div class="status-badge">Material em Produção - Aguarde</div>
-            </div>
-
-            <div class="card production-card">
-                <h3>Direito Processual Civil - Parte Geral e Tutela</h3>
-                <div class="status-badge">Material em Produção - Aguarde</div>
-            </div>
-
-            <div class="card production-card">
-                <h3>Direitos Humanos, Diversidade e Inclusão</h3>
-                <div class="status-badge">Material em Produção - Aguarde</div>
-            </div>
-
-        </div>
-
-        <br><br><br> </main>
-
-    <script>
-        /**
-         * Atualiza o preço baseado na seleção do Radio Button.
-         * Esta função é chamada diretamente pelo evento 'onchange' no HTML.
-         */
-        function updatePrice(radioInput) {
-            // 1. Encontra o card pai do input selecionado
-            const card = radioInput.closest('.card');
-            
-            // 2. Encontra o elemento de display de preço dentro desse card
-            const priceDisplay = card.querySelector('.price-display');
-            
-            // 3. Define os preços
-            const priceDigital = "R$ 55,00";
-            const pricePrinted = "R$ 65,00";
-
-            // 4. Lógica de atualização com feedback visual suave
-            if (radioInput.value === 'digital') {
-                priceDisplay.style.opacity = 0; // Fade out rápido
-                setTimeout(() => {
-                    priceDisplay.textContent = priceDigital;
-                    priceDisplay.style.opacity = 1; // Fade in
-                }, 150);
-            } else if (radioInput.value === 'impresso') {
-                priceDisplay.style.opacity = 0;
-                setTimeout(() => {
-                    priceDisplay.textContent = pricePrinted;
-                    priceDisplay.style.opacity = 1;
-                }, 150);
-            }
+                <div class="price-tag" id="price-${cardId}">R$ 55,00</div>
+                <span class="pix-info">Pagamento via PIX</span>
+                <button onclick="buy('${nome}', '${cardId}')" class="btn-buy">Comprar Agora</button>
+            `;
         }
-    </script>
+        container.appendChild(card);
+    }
+
+    function updatePrice(id, price) {
+        document.getElementById(`price-${id}`).innerText = `R$ ${price},00`;
+    }
+
+    function buy(materia, id) {
+        const isImpresso = document.getElementById(`imp-${id}`).checked;
+        const formato = isImpresso ? "Impresso" : "Digital (PDF)";
+        const valor = isImpresso ? "R$ 65,00" : "R$ 55,00";
+        const msg = encodeURIComponent(`Olá! Quero o resumo de: ${materia}\nFormato: ${formato}\nValor: ${valor}\nPagamento: PIX`);
+        window.location.href = `${whatsappBase}?text=${msg}`;
+    }
+
+    // Inicializar Matérias
+    materiasS1.forEach(m => createCard(m, 'semestre1'));
+    materiasS2.forEach(m => createCard(m, 'semestre2'));
+    materiasS3.forEach(m => createCard(m, 'semestre3', true));
+</script>
+
 </body>
 </html>
+
+
+
