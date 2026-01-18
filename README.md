@@ -1,221 +1,184 @@
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentalize Fácil - Resumos Jurídicos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Mentalize Fácil | Resumos Jurídicos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --azul-marca: #72CDEE; /* Azul claro do círculo da logo */
-            --azul-fundo: #D9EEFB; /* Fundo suave da imagem do site */
-            --azul-escuro: #0D47A1; /* Botões de conversão */
-            --branco: #FFFFFF;
-            --texto: #333333;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --azul-claro: #72CDEE; /* Cor da sua logo */
+            --azul-escuro: #003366; /* Cor de autoridade/botões */
+            --branco: #ffffff;
+            --fundo-suave: #f0f7fa;
+            --texto: #2c3e50;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
 
-        body { background-color: var(--azul-fundo); color: var(--texto); line-height: 1.6; }
+        body { background-color: var(--fundo-suave); color: var(--texto); scroll-behavior: smooth; }
 
-        /* 1. Identidade Visual & UI: Header Fixo */
+        /* HEADER ESTRATÉGICO */
         header {
-            position: fixed;
-            top: 0; width: 100%;
+            position: fixed; top: 0; width: 100%;
             background: var(--branco);
             padding: 10px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex; align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             z-index: 1000;
         }
+        .header-content { display: flex; align-items: center; gap: 15px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        header img { height: 50px; width: 50px; border-radius: 50%; }
+        header h1 { font-size: 1.1rem; color: var(--azul-escuro); text-transform: uppercase; letter-spacing: 1px; }
 
-        header .header-container {
-            width: 100%; max-width: 1100px;
-            display: flex; align-items: center; gap: 15px;
+        main { padding: 100px 5% 40px; max-width: 1200px; margin: 0 auto; }
+
+        .semestre-secao { margin-bottom: 50px; }
+        .titulo-secao { 
+            font-size: 1.8rem; margin-bottom: 25px; 
+            color: var(--azul-escuro); border-left: 6px solid var(--azul-claro);
+            padding-left: 15px;
         }
 
-        header img { height: 45px; border-radius: 50%; }
-        header h1 { font-size: 1.2rem; color: var(--azul-escuro); font-weight: 700; }
-
-        /* Estrutura de Catálogo */
-        main { padding: 100px 5% 50px; max-width: 1100px; margin: 0 auto; }
-
-        .section-title { 
-            font-size: 1.8rem; margin: 40px 0 20px; 
-            color: var(--texto); font-weight: 700; 
-        }
-
-        /* 5. Responsividade: Grid Mobile-first */
-        .card-grid {
+        /* GRID RESPONSIVO (MOBILE-FIRST) */
+        .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
-        /* Funcionalidade dos Cards */
+        /* CARD DE ALTA CONVERSÃO */
         .card {
             background: var(--branco);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 25px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            position: relative;
-            display: flex; flex-direction: column;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-
         .card:hover { transform: translateY(-5px); }
 
-        .card h3 { font-size: 1.1rem; margin-bottom: 15px; min-height: 50px; color: var(--azul-escuro); }
+        .card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--azul-escuro); height: 3.5rem; overflow: hidden; }
 
-        /* Seletor de Formato */
-        .format-selector {
-            display: flex; gap: 10px; margin-bottom: 20px;
-        }
-
-        .format-selector label {
-            flex: 1; text-align: center;
-            padding: 8px; border: 2px solid #f0f0f0;
-            border-radius: 10px; cursor: pointer;
-            font-size: 0.85rem; font-weight: 600;
+        /* SELETOR DIGITAL / IMPRESSO */
+        .seletor { margin-bottom: 20px; }
+        .radio-group { display: flex; gap: 10px; margin-top: 10px; }
+        .radio-label {
+            flex: 1; text-align: center; padding: 10px;
+            border: 2px solid #edf2f7; border-radius: 10px;
+            cursor: pointer; font-size: 0.9rem; font-weight: 600;
             transition: 0.2s;
         }
-
-        .format-selector input { display: none; }
-
-        .format-selector input:checked + label {
-            border-color: var(--azul-marca);
-            background: #f0faff;
-            color: var(--azul-escuro);
+        input[type="radio"] { display: none; }
+        input[type="radio"]:checked + .radio-label {
+            border-color: var(--azul-claro); background: #eefbff; color: var(--azul-escuro);
         }
 
-        /* Preço e Pagamento */
-        .price-tag { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
-        .pix-info { font-size: 0.8rem; color: #666; margin-bottom: 15px; display: block; }
+        .preco { font-size: 1.8rem; font-weight: 700; color: #27ae60; margin-bottom: 5px; }
+        .pix-tag { font-size: 0.75rem; color: #7f8c8d; margin-bottom: 15px; display: block; }
 
-        /* Ação do Botão CTA */
-        .btn-buy {
+        /* CTA AZUL ESCURO */
+        .btn-comprar {
             background: var(--azul-escuro);
             color: var(--branco);
-            text-decoration: none;
-            text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
+            text-decoration: none; text-align: center;
+            padding: 15px; border-radius: 12px;
+            font-weight: 700; text-transform: uppercase;
+            transition: 0.3s; cursor: pointer; border: none;
         }
+        .btn-comprar:hover { background: var(--azul-claro); color: var(--azul-escuro); transform: scale(1.02); }
 
-        .btn-buy:hover { background: #012d6a; box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3); }
-
-        /* 4. Seção em Produção */
-        .card.in-production { opacity: 0.6; pointer-events: none; }
-        .badge-soon {
-            position: absolute; top: 15px; right: 15px;
-            background: #eee; font-size: 0.7rem;
-            padding: 4px 10px; border-radius: 20px; font-weight: 700;
+        /* ESTILO EM PRODUÇÃO */
+        .card-producao { opacity: 0.6; background: #fafafa; border: 1px dashed #cbd5e0; position: relative; }
+        .tag-breve { 
+            position: absolute; top: 15px; right: 15px; 
+            background: #cbd5e0; padding: 4px 10px; border-radius: 20px; 
+            font-size: 0.7rem; font-weight: 700; 
         }
-        .msg-production { color: #888; font-style: italic; font-size: 0.9rem; margin-top: 10px; }
+        .msg-aguarde { font-style: italic; color: #718096; margin-top: 20px; text-align: center; font-weight: 600; }
 
         @media (max-width: 600px) {
-            .section-title { font-size: 1.4rem; text-align: center; }
-            header h1 { font-size: 1rem; }
+            .grid-cards { grid-template-columns: 1fr; }
+            header h1 { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="header-container">
-        <img src="shaky-yellow-zogbps963c.edgeone.app" alt="Mentalize Fácil"> <h1>Mentalize Fácil - Resumos Jurídicos</h1>
+    <div class="header-content">
+        <img src="logo.png" alt="Logo Mentalize Fácil">
+        <h1>Mentalize Fácil</h1>
     </div>
 </header>
 
 <main>
-    <h2 class="section-title">1º Semestre</h2>
-    <div class="card-grid" id="semestre1"></div>
+    <section class="semestre-secao">
+        <h2 class="titulo-secao">1º Semestre</h2>
+        <div class="grid-cards" id="grid-1"></div>
+    </section>
 
-    <h2 class="section-title">2º Semestre</h2>
-    <div class="card-grid" id="semestre2"></div>
+    <section class="semestre-secao">
+        <h2 class="titulo-secao">2º Semestre</h2>
+        <div class="grid-cards" id="grid-2"></div>
+    </section>
 
-    <h2 class="section-title">3º Semestre (A caminho)</h2>
-    <div class="card-grid" id="semestre3"></div>
+    <section class="semestre-secao">
+        <h2 class="titulo-secao">3º Semestre (Em Produção)</h2>
+        <div class="grid-cards" id="grid-3"></div>
+    </section>
 </main>
 
 <script>
-    const whatsappBase = "https://wa.me/5569992168120";
+    const whatsappLink = "https://wa.me/5569992168120";
 
-    const materiasS1 = [
-        "Ciência Política e Teoria Geral do Estado", "Criminologia", 
-        "História do Direito", "Psychologia Jurídica e Relações Interpessoais", "Teoria Geral do Direito"
-    ];
+    const s1 = ["Ciência Política e Teoria Geral do Estado", "Criminologia", "História do Direito", "Psicologia Jurídica e Relações Interpessoais", "Teoria Geral do Direito"];
+    const s2 = ["Direito Civil - Parte Geral", "Direito Constitucional (Teoria da Constituição e Direitos Fundamentais)", "Direito Criminal - Penal 1"];
+    const s3 = ["Direito Civil - Obrigações e Responsabilidade Civil", "Direito Constitucional - Organização do Estado e seus Poderes", "Direito Criminal - Penal 2", "Direito Processual Civil - Parte Geral e Tutela", "Direitos Humanos, Diversidade e Inclusão"];
 
-    const materiasS2 = [
-        "Direito Civil - Parte Geral", 
-        "Direito Constitucional (Teoria da Constituição e Direitos Fundamentais)", 
-        "Direito Criminal - Penal 1"
-    ];
-
-    const materiasS3 = [
-        "Direito Civil - Obrigações e Responsabilidade Civil",
-        "Direito Constitucional - Organização do Estado e seus Poderes",
-        "Direito Criminal - Penal 2",
-        "Direito Processual Civil - Parte Geral e Tutela",
-        "Direitos Humanos, Diversidade e Inclusão"
-    ];
-
-    function createCard(nome, containerId, isProduction = false) {
-        const container = document.getElementById(containerId);
-        const cardId = nome.replace(/\s+/g, '-').toLowerCase();
-
+    function createCard(materia, gridId, isProduction = false) {
+        const grid = document.getElementById(gridId);
+        const id = materia.replace(/\s+/g, '-').toLowerCase();
         const card = document.createElement('div');
-        card.className = `card ${isProduction ? 'in-production' : ''}`;
-        
-        if (isProduction) {
-            card.innerHTML = `
-                <span class="badge-soon">EM BREVE</span>
-                <h3>${nome}</h3>
-                <p class="msg-production">Material em Produção - Aguarde</p>
-            `;
+        card.className = isProduction ? 'card card-producao' : 'card';
+
+        if(isProduction) {
+            card.innerHTML = `<span class="tag-breve">EM BREVE</span><h3>${materia}</h3><p class="msg-aguarde">Material em Produção - Aguarde</p>`;
         } else {
             card.innerHTML = `
-                <h3>${nome}</h3>
-                <div class="format-selector">
-                    <input type="radio" name="fmt-${cardId}" id="dig-${cardId}" value="Digital" checked onchange="updatePrice('${cardId}', 55)">
-                    <label for="dig-${cardId}">Digital (PDF)</label>
-                    <input type="radio" name="fmt-${cardId}" id="imp-${cardId}" value="Impresso" onchange="updatePrice('${cardId}', 65)">
-                    <label for="imp-${cardId}">Impresso</label>
+                <h3>${materia}</h3>
+                <div class="seletor">
+                    <div class="radio-group">
+                        <input type="radio" name="fmt-${id}" id="dig-${id}" value="55" checked onchange="updatePrice('${id}', 55)">
+                        <label class="radio-label" for="dig-${id}">Digital (PDF)</label>
+                        <input type="radio" name="fmt-${id}" id="imp-${id}" value="65" onchange="updatePrice('${id}', 65)">
+                        <label class="radio-label" for="imp-${id}">Impresso</label>
+                    </div>
                 </div>
-                <div class="price-tag" id="price-${cardId}">R$ 55,00</div>
+                <div class="preco" id="price-${id}">R$ 55,00</div>
                 <span class="pix-info">Pagamento via PIX</span>
-                <button onclick="buy('${nome}', '${cardId}')" class="btn-buy">Comprar Agora</button>
+                <button onclick="comprar('${materia}', '${id}')" class="btn-comprar">Comprar Agora</button>
             `;
         }
-        container.appendChild(card);
+        grid.appendChild(card);
     }
 
-    function updatePrice(id, price) {
-        document.getElementById(`price-${id}`).innerText = `R$ ${price},00`;
+    function updatePrice(id, valor) {
+        document.getElementById(`price-${id}`).innerText = `R$ ${valor},00`;
     }
 
-    function buy(materia, id) {
-        const isImpresso = document.getElementById(`imp-${id}`).checked;
-        const formato = isImpresso ? "Impresso" : "Digital (PDF)";
-        const valor = isImpresso ? "R$ 65,00" : "R$ 55,00";
-        const msg = encodeURIComponent(`Olá! Quero o resumo de: ${materia}\nFormato: ${formato}\nValor: ${valor}\nPagamento: PIX`);
-        window.location.href = `${whatsappBase}?text=${msg}`;
+    function comprar(materia, id) {
+        const preco = document.getElementById(`price-${id}`).innerText;
+        const formato = document.querySelector(`input[name="fmt-${id}"]:checked`).nextElementSibling.innerText;
+        const msg = encodeURIComponent(`Olá! Quero adquirir o resumo:\n📚 Matéria: ${materia}\n📄 Formato: ${formato}\n💰 Valor: ${preco}\n✅ Pagamento via PIX.`);
+        window.location.href = `${whatsappLink}?text=${msg}`;
     }
 
-    // Inicializar Matérias
-    materiasS1.forEach(m => createCard(m, 'semestre1'));
-    materiasS2.forEach(m => createCard(m, 'semestre2'));
-    materiasS3.forEach(m => createCard(m, 'semestre3', true));
+    // Gerar Matérias
+    s1.forEach(m => createCard(m, 'grid-1'));
+    s2.forEach(m => createCard(m, 'grid-2'));
+    s3.forEach(m => createCard(m, 'grid-3', true));
 </script>
 
 </body>
 </html>
-
-
-
