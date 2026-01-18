@@ -130,7 +130,7 @@
 
 <header>
     <div class="header-container">
-        <img src="logo.png" alt="Mentalize Fácil"> <h1>Mentalize Fácil - Resumos Jurídicos</h1>
+        <img src="shaky-yellow-zogbps963c.edgeone.app" alt="Mentalize Fácil"> <h1>Mentalize Fácil - Resumos Jurídicos</h1>
     </div>
 </header>
 
