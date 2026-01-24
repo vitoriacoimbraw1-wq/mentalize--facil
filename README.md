@@ -3,250 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentalize Fácil | Resumos Jurídicos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Mentalize Fácil | Resumos Jurídicos de Alta Retenção</title>
     <style>
+        /* DESIGN SYSTEM & VARIABLES */
         :root {
-            --primary-blue: #72CDEE; /* Azul da Marca */
-            --dark-blue: #0A4275;    /* Azul Profissional */
-            --bg-light: #E3F2FD;     /* Fundo suave (Premium) */
-            --white: #ffffff;
-            --text-main: #1A202C;
-            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.06);
+            --azul-marca: #007BFF;
+            --azul-escuro: #003366;
+            --branco: #FFFFFF;
+            --cinza-claro: #F8F9FA;
+            --texto: #2D3436;
+            --suave-sombra: 0 4px 12px rgba(0,0,0,0.08);
+            --transicao: all 0.3s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
 
-        body { 
-            background-color: var(--bg-light); 
-            color: var(--text-main); 
-            padding-bottom: 50px;
-        }
+        body { background-color: var(--branco); color: var(--texto); line-height: 1.6; }
 
-        /* HEADER ESTILO PÍLULA COM ÍCONE SVG */
-        .header-wrapper {
-            padding: 30px 5% 10px;
-            display: flex;
-            justify-content: center;
-        }
-
+        /* HEADER */
         header {
-            background: var(--white);
-            padding: 12px 30px;
-            border-radius: 100px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: var(--shadow-soft);
-            max-width: 700px;
-            width: 100%;
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: var(--branco); display: flex; align-items: center;
+            justify-content: center; box-shadow: var(--suave-sombra); z-index: 1000;
         }
+        header img { height: 45px; }
 
-        /* Ícone de Cérebro/Lâmpada em SVG para substituir a logo física */
-        .logo-icon {
-            background: var(--primary-blue);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        header h1 { font-size: 1.2rem; font-weight: 800; color: var(--dark-blue); letter-spacing: -0.5px; }
-
-        /* SEÇÕES */
-        main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        /* LAYOUT */
+        main { max-width: 1100px; margin: 100px auto 40px; padding: 0 20px; }
         
-        .section-header {
-            margin: 40px 0 20px;
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--dark-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .section-title { 
+            font-size: 1.5rem; color: var(--azul-escuro); 
+            margin: 40px 0 20px; border-left: 5px solid var(--azul-marca); padding-left: 15px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* GRID DE CARDS SOFT UI */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+        .grid-cards { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 25px; 
         }
 
+        /* CARDS */
         .card {
-            background: var(--white);
-            border-radius: 25px;
-            padding: 30px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255,255,255,0.7);
-            display: flex;
-            flex-direction: column;
+            background: var(--branco); border: 1px solid #E1E8ED; border-radius: 12px;
+            padding: 25px; display: flex; flex-direction: column;
+            transition: var(--transicao); position: relative;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--suave-sombra); }
+
+        .card h3 { color: var(--azul-escuro); font-size: 1.2rem; margin-bottom: 15px; min-height: 3rem;}
+        
+        .subtopicos { font-size: 0.85rem; color: #636E72; margin-bottom: 20px; flex-grow: 1; }
+        .subtopicos b { color: var(--azul-marca); }
+
+        /* SELETOR DE PREÇO */
+        .price-selector {
+            background: var(--cinza-claro); padding: 10px; border-radius: 8px; margin-bottom: 15px;
+            display: flex; justify-content: space-around;
+        }
+        .option { display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem;}
+
+        .price-display { 
+            font-size: 1.4rem; font-weight: 800; color: var(--azul-escuro); 
+            text-align: center; margin-bottom: 5px;
+        }
+        .pix-tag { 
+            display: block; text-align: center; font-size: 0.75rem; 
+            color: #00B894; font-weight: bold; margin-bottom: 15px;
         }
 
-        .card:hover { transform: translateY(-10px); box-shadow: 0 35px 70px rgba(0, 0, 0, 0.08); }
+        /* BOTÃO COMPRAR */
+        .btn-comprar {
+            background: var(--azul-escuro); color: var(--branco); text-align: center;
+            padding: 14px; border-radius: 8px; text-decoration: none;
+            font-weight: bold; transition: var(--transicao); border: none; width: 100%;
+            cursor: pointer; font-size: 1rem;
+        }
+        .btn-comprar:hover { background: var(--azul-marca); }
 
-        .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark-blue); margin-bottom: 20px; min-height: 50px; line-height: 1.4; }
-
-        /* SELETOR PREMIUM */
-        .selector {
-            display: flex;
-            background: #F7FAFC;
-            padding: 5px;
-            border-radius: 15px;
-            margin-bottom: 20px;
+        /* ESTADO EM PRODUÇÃO */
+        .em-producao { opacity: 0.6; pointer-events: none; filter: grayscale(0.5); }
+        .badge-breve {
+            position: absolute; top: 10px; right: 10px; background: #B2BEC3;
+            color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold;
         }
 
-        .selector label {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 11px;
-            transition: 0.2s;
-        }
-
-        .selector input { display: none; }
-        .selector input:checked + label {
-            background: var(--white);
-            color: var(--dark-blue);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-
-        /* PREÇO E CTA */
-        .price-container { margin-bottom: 20px; }
-        .price { font-size: 1.8rem; font-weight: 800; color: var(--dark-blue); }
-        .pix-tag { font-size: 0.7rem; color: #718096; font-weight: 700; margin-top: 4px; display: block; text-transform: uppercase; }
-
-        .btn-buy {
-            background: var(--dark-blue);
-            color: var(--white);
-            text-align: center;
-            padding: 18px;
-            border-radius: 18px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-buy:hover { background: var(--primary-blue); transform: scale(1.02); }
-
-        /* ESTILO EM BREVE */
-        .card.soon {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(8px);
-            opacity: 0.7;
-        }
-
-        .badge {
-            background: var(--primary-blue);
-            color: var(--white);
-            font-size: 0.6rem;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-weight: 800;
-            align-self: flex-start;
-            margin-bottom: 15px;
-        }
-
-        /* RESPONSIVIDADE */
-        @media (max-width: 600px) {
-            header { padding: 10px 20px; }
-            header h1 { font-size: 1rem; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 600px) { .grid-cards { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<div class="header-wrapper">
     <header>
-        <div class="logo-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 20a2.5 2.5 0 0 1 5 0"/><path d="M12 15V3"/><path d="M8 11a4 4 0 0 1 8 0"/></svg>
-        </div>
-        <h1>Mentalize Fácil - Resumos</h1>
+        <img src="logo.png" alt="Mentalize Fácil">
     </header>
-</div>
 
-<main>
-    <div class="section-header">1º Semestre</div>
-    <div class="card-grid" id="s1"></div>
-
-    <div class="section-header">2º Semestre</div>
-    <div class="card-grid" id="s2"></div>
-
-    <div class="section-header">3º Semestre (Em Produção)</div>
-    <div class="card-grid" id="s3"></div>
-</main>
-
-<script>
-    const wa = "https://wa.me/5569992168120";
-
-    const data = {
-        s1: ["Ciência Política e Teoria Geral do Estado", "Criminologia", "História do Direito", "Psicologia Jurídica e Relações Interpessoais", "Teoria Geral do Direito"],
-        s2: ["Direito Civil - Parte Geral", "Direito Constitucional", "Direito Criminal - Penal 1"],
-        s3: ["Direito Civil - Obrigações", "Direito Constitucional - Poderes", "Direito Criminal - Penal 2", "Direito Processual Civil", "Direitos Humanos"]
-    };
-
-    function render() {
-        // Semestres ativos
-        ['s1', 's2'].forEach(sem => {
-            const container = document.getElementById(sem);
-            data[sem].forEach((mat, i) => {
-                const id = `${sem}-${i}`;
-                container.innerHTML += `
-                    <div class="card">
-                        <h3>${mat}</h3>
-                        <div class="selector">
-                            <input type="radio" name="f-${id}" id="d-${id}" checked onchange="up('${id}', 55)">
-                            <label for="d-${id}">Digital (PDF)</label>
-                            <input type="radio" name="f-${id}" id="i-${id}" onchange="up('${id}', 65)">
-                            <label for="i-${id}">Impresso</label>
-                        </div>
-                        <div class="price-container">
-                            <span class="price" id="p-${id}">R$ 55,00</span>
-                            <span class="pix-tag">✓ Pagamento via PIX</span>
-                        </div>
-                        <button class="btn-buy" onclick="buy('${mat}', '${id}')">COMPRAR AGORA</button>
-                    </div>
-                `;
-            });
-        });
-
-        // Semestre em produção
-        const s3 = document.getElementById('s3');
-        data.s3.forEach(mat => {
-            s3.innerHTML += `
-                <div class="card soon">
-                    <span class="badge">BREVE</span>
-                    <h3>${mat}</h3>
-                    <p style="color: #718096; font-weight: 700; font-size: 0.85rem;">Em fase de finalização...</p>
+    <main>
+        <h2 class="section-title">1º Semestre</h2>
+        <div class="grid-cards">
+            
+            <article class="card">
+                <h3>Ciência Política e Teoria Geral do Estado</h3>
+                <div class="subtopicos">
+                    <b>Parte 1:</b> Temática central, objeto de estudo - Paulo Bonavides, O que é Sociedade?, Estado vs Nação, População vs povo, Formas de governo, sistema de governo. <br>
+                    <b>Parte 2:</b> Sufrágio, Voto, Sistema Eleitorais, Partidos Políticos.
                 </div>
-            `;
-        });
-    }
+                <div class="price-container" data-materia="Ciência Política">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="cp" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="cp" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
 
-    function up(id, v) { document.getElementById(`p-${id}`).innerText = `R$ ${v},00`; }
+            <article class="card">
+                <h3>Criminologia</h3>
+                <div class="subtopicos">
+                    Teoria do consenso, Teoria do conflito, Teoria da subcultura delinquente, Anomia, Direito penal mínimo e pena, modos de adaptação, vitimologia e classificação.
+                </div>
+                <div class="price-container" data-materia="Criminologia">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="crim" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="crim" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
 
-    function buy(m, id) {
-        const p = document.getElementById(`p-${id}`).innerText;
-        const f = document.querySelector(`input[name="f-${id}"]:checked`).nextElementSibling.innerText;
-        const txt = encodeURIComponent(`Olá! Quero o resumo de:\n📚 *${m}*\n📄 Formato: ${f}\n💰 Valor: ${p}\n\nFavor enviar a chave PIX.`);
-        window.location.href = `${wa}?text=${txt}`;
-    }
+            <article class="card">
+                <h3>História do Direito</h3>
+                <div class="subtopicos">
+                    O direito na Antiguidade, Código de Hamurabi, Direito Hebreu e Legislação, Direito Grego, Direito na Idade média, Direito Canônico, Revalorização da escrita, O feudalismo e Magna Carta, Contexto geral na Idade Moderna, Reforma protestante (século XVI), renascimento (Século XIV a VXI), Iluminismo (Século XVIII), Césare Beccaria e a Reforma do direito penal, constituições.
+                </div>
+                <div class="price-container" data-materia="História do Direito">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="hd" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="hd" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
 
-    render();
-</script>
+            <article class="card">
+                <h3>Psicologia Jurídica e Relações Interpessoais</h3>
+                <div class="subtopicos">
+                    Mediação Familiar, Resolução de Conflitos, Crianças e adolescentes, Alineação Parental, raízes da violência, Violência de Gênero, Relações Humanas/Interpessoais.
+                </div>
+                <div class="price-container" data-materia="Psicologia Jurídica">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="psic" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="psic" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
 
+            <article class="card">
+                <h3>Teoria Geral do Direito</h3>
+                <div class="subtopicos">
+                    <b>Parte 1:</b> Objetividade e Subjetividade, tipos e fontes do conhecimento, Zetética e dogmática, Escolas do direito, Subjetividade Potestativa, Hermeneutica Juritica, Fontes do Direito. <br>
+                    <b>Parte 2:</b> Teoria da Norma Jurídica, HIerarquia das Normas, Sanções ou Punições, Teoria do Ordenamento Jurítico, questão temporal, Direito Neoconstitucionalismo, Direitos Humanos.
+                </div>
+                <div class="price-container" data-materia="Teoria Geral do Direito">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="tgd" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="tgd" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
+        </div>
+
+        <h2 class="section-title">2º Semestre</h2>
+        <div class="grid-cards">
+            
+            <article class="card">
+                <h3>Direito Civil - Parte Geral</h3>
+                <div class="subtopicos">
+                    Conceitos de direito Civil, Código Civil de 2002, Princípios Básicos, Das pessoas Naturais, Capacidade Jurídica e Legitimação, Sujeitos da Relação Jurídica, Teorias, Das incapacidades, Cessação da incapacidade, Da Ausência, Dos bens, Classificação dos bens, Fatos Jurídico, Negócio Jurídico.
+                </div>
+                <div class="price-container" data-materia="Direito Civil (Parte Geral)">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="civ1" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="civ1" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <h3>Direito Constitucional</h3>
+                <div class="subtopicos">
+                    Direito Publico e privado, Conceito do direito Constitucional, Limitação do poder do Estado, Conceito da Constituição, Concepções da constituição, Classificação da Constituição, O que é Constitucionalismo, desdobramentos, Neocontitucionalismo, Jusnaturalismo, Positivismo, Poder constituinte, Aplicabilidade das normas constitucionais, Bloco de Constitucionalidade, Métodos de Interpretação Constitucional.
+                </div>
+                <div class="price-container" data-materia="Direito Constitucional">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="const" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="const" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <h3>Direito Criminal - Penal 1</h3>
+                <div class="subtopicos">
+                    Introdução e principios fundamentais, Divisões do Direito Penal, Fases Históricas da Pena, Período Humanitário, Escola Penais, Fundamentos Constitucionais do Direito Penal, Direito pena Moderno, Princípios limitadores do poder punitívo, Conceito e função da norma penal, Normas penais inconpletas ou imperfeitas, fontes do direito penal, tipos de norma penais, interpretação da lei, Lei penal no tempo, Lei penal no espaço.
+                </div>
+                <div class="price-container" data-materia="Direito Criminal (Penal 1)">
+                    <div class="price-selector">
+                        <label class="option"><input type="radio" name="pen1" value="55" checked onclick="updatePrice(this)"> Digital (PDF)</label>
+                        <label class="option"><input type="radio" name="pen1" value="65" onclick="updatePrice(this)"> Impresso</label>
+                    </div>
+                    <div class="price-display">R$ 55,00</div>
+                    <span class="pix-tag">Pagamento via PIX</span>
+                    <button class="btn-comprar" onclick="checkout(this)">COMPRAR AGORA</button>
+                </div>
+            </article>
+        </div>
+
+        <h2 class="section-title">3º Semestre (Em Produção)</h2>
+        <div class="grid-cards">
+            <article class="card em-producao">
+                <span class="badge-breve">Em Breve</span>
+                <h3>Direito Civil - Obrigações e Resp. Civil</h3>
+                <div class="subtopicos">Material em Produção - Aguarde</div>
+            </article>
+            <article class="card em-producao">
+                <span class="badge-breve">Em Breve</span>
+                <h3>Direito Constitucional - Org. Estado</h3>
+                <div class="subtopicos">Material em Produção - Aguarde</div>
+            </article>
+            <article class="card em-producao">
+                <span class="badge-breve">Em Breve</span>
+                <h3>Direito Criminal - Penal 2</h3>
+                <div class="subtopicos">Material em Produção - Aguarde</div>
+            </article>
+            <article class="card em-producao">
+                <span class="badge-breve">Em Breve</span>
+                <h3>Processual Civil - Parte Geral e Tutela</h3>
+                <div class="subtopicos">Material em Produção - Aguarde</div>
+            </article>
+            <article class="card em-producao">
+                <span class="badge-breve">Em Breve</span>
+                <h3>Direitos Humanos, Diversidade e Inclusão</h3>
+                <div class="subtopicos">Material em Produção - Aguarde</div>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        // Lógica de Atualização de Preço
+        function updatePrice(radio) {
+            const container = radio.closest('.price-container');
+            const display = container.querySelector('.price-display');
+            display.innerText = `R$ ${radio.value},00`;
+        }
+
+        // Lógica de Redirecionamento WhatsApp
+        function checkout(btn) {
+            const container = btn.closest('.price-container');
+            const materia = container.getAttribute('data-materia');
+            const formato = container.querySelector('input:checked').parentElement.innerText.trim();
+            const preco = container.querySelector('.price-display').innerText;
+            
+            const telefone = "5569992168120";
+            const mensagem = encodeURIComponent(`Olá! Gostaria de comprar o resumo de *${materia}* no formato *${formato}* (${preco}). Aguardo os dados para o PIX.`);
+            
+            window.location.href = `https://wa.me/${telefone}?text=${mensagem}`;
+        }
+    </script>
 </body>
 </html>
